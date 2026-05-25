@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --font-hud: "Orbitron", sans-serif;
+  --font-sans: "Outfit", sans-serif;
+  
+  --color-cyber-blue: #00f0ff;
+  --color-cyber-pink: #ff007f;
+  --color-cyber-purple: #bd00ff;
+  --color-space-dark: #030014;
+  --color-hud-green: #39ff14;
+  
+  --animate-neon-pulse: neon-pulse 2s infinite alternate;
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes neon-pulse {
+    from {
+      box-shadow: 0 0 4px rgba(0, 240, 255, 0.4), 0 0 12px rgba(0, 240, 255, 0.2);
+    }
+    to {
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 25px rgba(0, 240, 255, 0.4);
+    }
+  }
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+/* Custom Scrollbar for HUD panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(3, 0, 20, 0.8);
+  border-left: 1px solid rgba(0, 240, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+/* Custom styles */
+body {
+  background-color: #030014;
+  color: #e2e8f0;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Sci-fi Overlay scanline effect */
+.scanline::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Glassmorphism Sci-Fi Card utility */
+.hud-card {
+  background: rgba(3, 0, 20, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.hud-card-purple {
+  background: rgba(3, 0, 20, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(189, 0, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* HUD Text Glows */
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.text-glow-pink {
+  text-shadow: 0 0 10px rgba(255, 0, 127, 0.6), 0 0 20px rgba(255, 0, 127, 0.3);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(189, 0, 255, 0.6), 0 0 20px rgba(189, 0, 255, 0.3);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.6), 0 0 20px rgba(57, 255, 20, 0.3);
+}
+
+/* Cybernetic corners */
+.corner-border {
+  position: relative;
+}
+.corner-border::before, .corner-border::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--color-cyber-blue);
+  pointer-events: none;
+}
+.corner-border::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+.corner-border::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Circular cyber-hud border */
+.hud-border {
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.1);
+}
